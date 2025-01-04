@@ -1,27 +1,48 @@
 const apiUrl = "https://api.npoint.io/60cbd4313ed9c75c4209";
-let data = []; // Initialize data array
+let data = []; // Initialize the data array
 const container = document.getElementById("data-container");
 const form = document.getElementById("entry-form");
 
-// Fetch data from the API
-async function fetchData() {
+// Function to check if the npoint API URL is valid
+async function isValidNpointId(key) {
+  const apiUrl = `https://api.npoint.io/${key}`;
   try {
-    const response = await fetch(apiUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.status}`);
-    }
-
-    data = await response.json();
-    renderData();
+    const response = await fetch(apiUrl);
+    return response.ok;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    return false;
+  }
+}
+
+// Function to validate the key for the npoint URL
+async function validateKey(key) {
+  try {
+    const isValid = await isValidNpointId(key);
+    return isValid;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Fetch data from the API if the key is valid
+async function fetchData() {
+  const key = "60cbd4313ed9c75c4209"; // The API key for npoint
+  const isValid = await validateKey(key);
+
+  if (isValid) {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.status}`);
+      }
+
+      data = await response.json();
+      renderData();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  } else {
+    console.error("Invalid API key.");
   }
 }
 
@@ -76,22 +97,29 @@ async function deleteEntry(id) {
 
 // Update data on the server
 async function updateData() {
-  try {
-    const response = await fetch(apiUrl, {
-      method: "PUT", // Use PUT to overwrite the data
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const key = "60cbd4313ed9c75c4209"; // The API key for npoint
+  const isValid = await validateKey(key);
 
-    if (!response.ok) {
-      throw new Error(`Failed to update data: ${response.status}`);
+  if (isValid) {
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PUT", // Use PUT to overwrite the data
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update data: ${response.status}`);
+      }
+
+      renderData();
+    } catch (error) {
+      console.error("Error updating data:", error);
     }
-
-    renderData();
-  } catch (error) {
-    console.error("Error updating data:", error);
+  } else {
+    console.error("Invalid API key.");
   }
 }
 
