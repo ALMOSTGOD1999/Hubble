@@ -6,8 +6,18 @@ const form = document.getElementById("entry-form");
 // Fetch data from the API
 async function fetchData() {
   try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error("Failed to fetch data");
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`);
+    }
+
     data = await response.json();
     renderData();
   } catch (error) {
@@ -22,8 +32,7 @@ function renderData() {
     const div = document.createElement("div");
     div.className = "entry";
     div.innerHTML = `
-    <div class="cover">
-      <img src="${entry.imageUrl}" alt="Avatar"></div>
+      <img src="${entry.imageUrl}" alt="Avatar">
       <div class="details">
         <h3>${entry.title}</h3>
         <p>${entry.description}</p>
@@ -37,18 +46,10 @@ function renderData() {
   });
 }
 
-// Delete an entry
-function deleteEntry(id) {
-  const index = data.findIndex((entry) => entry.id === id);
-  if (index !== -1) {
-    data.splice(index, 1);
-    updateData();
-  }
-}
-
 // Add a new entry
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // Prevent form from refreshing the page
+
   const newEntry = {
     id: data.length + 1,
     title: document.getElementById("title").value,
@@ -58,10 +59,20 @@ form.addEventListener("submit", async (event) => {
     tags: document.getElementById("tags").value.split(",").map((tag) => tag.trim()),
     imageUrl: document.getElementById("imageUrl").value,
   };
+
   data.push(newEntry);
-  updateData();
+  await updateData();
   form.reset(); // Clear the form fields
 });
+
+// Delete an entry
+async function deleteEntry(id) {
+  const index = data.findIndex((entry) => entry.id === id);
+  if (index !== -1) {
+    data.splice(index, 1);
+    await updateData();
+  }
+}
 
 // Update data on the server
 async function updateData() {
@@ -73,7 +84,11 @@ async function updateData() {
       },
       body: JSON.stringify(data),
     });
-    if (!response.ok) throw new Error("Failed to update data");
+
+    if (!response.ok) {
+      throw new Error(`Failed to update data: ${response.status}`);
+    }
+
     renderData();
   } catch (error) {
     console.error("Error updating data:", error);
