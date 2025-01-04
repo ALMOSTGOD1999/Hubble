@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Management</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+            <h3 class="hero-head" onclick="returnToHome();">COSMOS <span style="color:red">redshift</span></h3>
+        </div>
+  <div id="app">
+    <div id="data-container"></div>
+    <form id="entry-form">
+      <h2>Create New Entry</h2>
+      <input type="text" id="title" placeholder="Title" required>
+      <input type="text" id="author" placeholder="Author" required>
+      <input type="text" id="description" placeholder="Description" required>
+      <input type="text" id="date" placeholder="Date (e.g., Jan 4, 2025)" required>
+      <input type="text" id="tags" placeholder="Tags (comma-separated)" required>
+      <input type="url" id="imageUrl" placeholder="Image URL" required>
+      <button type="submit">Add Entry</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+

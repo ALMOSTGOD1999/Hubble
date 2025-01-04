@@ -1,0 +1,99 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #333; 
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    color: #FFF;
+}
+
+button{
+  background-color: #333;
+  color: #f00;
+  font-family: 'Montserrat';
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #111;
+    color: white;
+    padding: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+h3{
+  margin:0;
+}
+
+#app{
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+#data-container{
+  padding: 10px 20px;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+.entry{
+  padding: 10px;
+  border: 1px solid #777;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.details{
+  padding: 0 10px;
+}
+
+form {
+  background: #333;
+  padding: 20px;
+  border: 1px solid #111;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+form h2 {
+  margin-top: 0;
+}
+
+form input {
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #777;
+  border-radius: 5px;
+  font-family: 'Montserrat';
+  background-color: #333;
+  color: #fff;
+}
+
+form button {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background-color: #4cae4c;
+}
+
+img{
+  width: 300px;
+}

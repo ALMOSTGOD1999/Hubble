@@ -1,0 +1,19 @@
+{
+  "course-name": "statistics",
+  "course-desc": "",
+  "thumbnail": "",
+  "date-added": "2025-01-03",
+  "chapters": [{
+      "title": "Introduction to Statistics",
+      "desc": "The vector product, also known as the cross product, is a fundamental operation in physics that combines two vectors to produce a third vector.",
+      "videoID": "gzlFQNekI-c",
+      "pdf": "./PDF/Stat.pdf"
+    },
+    {
+      "title": "Binomial Theorem",
+      "desc": "The vector product, also known as the cross product, is a fundamental operation in physics that combines two vectors to produce a third vector.",
+      "videoID": "QMMTSdWFaPE",
+      "pdf": "./PDF/binomial.pdf"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "course-name": "vector",
+  "course-desc": "",
+  "thumbnail": "",
+  "date-added": "2025-01-03",
+  "chapters": [{
+      "title": "Vector Products",
+      "desc": "The vector product, also known as the cross product, is a fundamental operation in physics that combines two vectors to produce a third vector.",
+      "videoID": "jele5U1i2mk",
+      "pdf": "./PDF/Vector Product.pdf"
+    },
+    {
+      "title": "Kinetic Theory of Gases",
+      "desc": "The Kinetic Theory of Gases (KTG) is a scientific theory that explains the macroscopic properties of gases by considering their molecular composition and motion.",
+      "videoID": "gDbFiopSbEE",
+      "pdf": "./PDF/Ideal Gas.pdf"
+    }
+  ]
+}
