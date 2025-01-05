@@ -69,8 +69,7 @@ function renderData() {
 
 // Add a new entry
 form.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent form from refreshing the page
-
+  event.preventDefault(); 
   const newEntry = {
     id: data.length + 1,
     title: document.getElementById("title").value,
@@ -83,10 +82,10 @@ form.addEventListener("submit", async (event) => {
 
   data.push(newEntry);
   await updateData();
-  form.reset(); // Clear the form fields
+  form.reset(); 
 });
 
-// Delete an entry
+
 async function deleteEntry(id) {
   const index = data.findIndex((entry) => entry.id === id);
   if (index !== -1) {
@@ -95,15 +94,15 @@ async function deleteEntry(id) {
   }
 }
 
-// Update data on the server
+
 async function updateData() {
-  const key = "60cbd4313ed9c75c4209"; // The API key for npoint
+  const key = "60cbd4313ed9c75c4209";
   const isValid = await validateKey(key);
 
   if (isValid) {
     try {
       const response = await fetch(apiUrl, {
-        method: "PUT", // Use PUT to overwrite the data
+        method: "PUT", 
         headers: {
           "Content-Type": "application/json",
         },
@@ -123,7 +122,7 @@ async function updateData() {
   }
 }
 
-// Initialize
+
 fetchData();
 
 async function sha256(message) {
