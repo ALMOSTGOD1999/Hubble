@@ -125,3 +125,32 @@ async function updateData() {
 
 // Initialize
 fetchData();
+
+async function sha256(message) {
+    // Encode as UTF-8
+    const msgBuffer = new TextEncoder().encode(message);                    
+
+    // Hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // Convert ArrayBuffer to Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    // Convert bytes to hex string                  
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+async function login() {
+    const pwd = document.getElementById("pwd").value;
+
+    // Compute the hash asynchronously
+    const hashedPwd = await sha256(pwd);
+
+    // Compare the hash
+    if (hashedPwd === '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4') {
+        document.getElementById("login").style.display = "none";
+    } else {
+        alert("WRONG PASSWORD");
+    }
+}
