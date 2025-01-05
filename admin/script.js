@@ -94,7 +94,6 @@ async function deleteEntry(id) {
   }
 }
 
-
 async function updateData() {
   const key = "60cbd4313ed9c75c4209";
   const isValid = await validateKey(key);
@@ -102,7 +101,7 @@ async function updateData() {
   if (isValid) {
     try {
       const response = await fetch(apiUrl, {
-        method: "PUT", 
+        method: "POST", // Changed from PUT to POST
         headers: {
           "Content-Type": "application/json",
         },
@@ -121,7 +120,6 @@ async function updateData() {
     console.error("Invalid API key.");
   }
 }
-
 
 fetchData();
 
